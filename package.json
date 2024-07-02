@@ -1,0 +1,27 @@
+{
+  "name": "wetube-challenge",
+  "version": "1.0.0",
+  "description": "challenge_fighting",
+  "author": "Hee Yeoun",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/gulggum/wetube-challenge.git"
+  },
+  "scripts": {
+    "dev": "nodemon --exec babel-node src/server.js"
+  },
+  "bugs": {
+    "url": "https://github.com/gulggum/wetube-challenge/issues"
+  },
+  "homepage": "https://github.com/gulggum/wetube-challenge#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.7",
+    "@babel/node": "^7.24.7",
+    "@babel/preset-env": "^7.24.7",
+    "nodemon": "^3.1.4"
+  }
+}
