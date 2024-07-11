@@ -1,0 +1,7 @@
+extends base
+
+block content
+    h2 Edit your video
+    form(method="POST", action="/videos/upload")
+        input(name="title",placeholder="New video title", type="text") 
+        input(type="submit",value="Upload")
