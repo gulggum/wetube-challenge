@@ -17,6 +17,7 @@
   "homepage": "https://github.com/gulggum/wetube-challenge#readme",
   "dependencies": {
     "express": "^4.19.2",
+    "mongoos": "^0.0.1-security",
     "morgan": "^1.10.0",
     "pug": "^3.0.3"
   },
