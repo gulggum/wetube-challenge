@@ -1,10 +1,7 @@
 mixin video(videoData)
 
     div
-        h5
-            a(href=`/videos/${videoData.id}`) #{videoData.title}
-            ul
-                li #{videoData.title}
-                li #{videoData.rating}/5
-                li posted #{videoData.createAt}
-                li #{videoData.views} #{videoData.views===1 ? "view" : "views"}   
+        a(href=`/videos/${videoData.id}`) #{videoData.title}
+        p=videoData.description
+        small=videoData.createdAt
+        hr

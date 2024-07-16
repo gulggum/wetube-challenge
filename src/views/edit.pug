@@ -3,5 +3,7 @@ extends base
 block content
     h2 Edit your video
     form(method="POST")
-        input(name="title",placeholder="New title",type="text",required)
+        input(name="title",placeholder="New title",type="text",required,value=video.title)
+        input(name="description",placeholder="Description", type="text",required,value=video.description)
+        input(name="hashtags",placeholder="Hashtags", type="text",required, value=video.hashtags.join()) 
         input(type="submit",value="Edit")

@@ -3,7 +3,12 @@ extends base
 
 block content
     div
-        h2=video.title
-            h3 #{video.views} #{video.views===1 ? "view" : "views"}
-        a(href=`${video.id}/edit`) Edit &rarr;
+         h3
+            p=video.description
+            small=video.createdAt
+            br
+            small=video.hashtags
+    a(href=`${video.id}/edit`) Edit &rarr;
+    br
+    a(href=`${video.id}/remove`) Remove &rarr;
     
