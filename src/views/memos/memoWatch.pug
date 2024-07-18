@@ -1,0 +1,18 @@
+extends ../base
+include ../mixins/memo
+
+block content
+    div
+        h3
+        a(href=`/memo/${memo._id}`) #{memo.title}
+        br
+        small=`작성자 : ${memo.author}`
+        p=memo.content
+        small=memo.hashtags
+        br
+        small=`작성일 : ${memo.writeTime}`
+        br
+        a(href=`/memo/${memo.id}/edit`) 수정
+        span         
+        a(href=`/memo/${memo.id}/delete`) 삭제
+        hr

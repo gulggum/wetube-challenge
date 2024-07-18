@@ -1,0 +1,13 @@
+extends ../base
+include ../mixins/memo
+
+block content
+    div 
+        h2
+            a(href="/memo/upload") ✏️New memo
+        a(href="/memo/search") 🪄Search Memo
+    
+    hr
+    div
+        each memoData in memo
+            +memo(memoData)

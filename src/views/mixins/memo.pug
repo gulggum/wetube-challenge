@@ -1,0 +1,12 @@
+mixin memo(memoData)
+
+    div
+        h3
+        a(href=`/memo/${memoData.id}`) #{memoData.title}
+        br
+        small=`작성자 : ${memoData.author}`
+        p=memoData.content
+        small=memoData.hashtags
+        br
+        small=`작성일 : ${memoData.writeTime}`
+    hr

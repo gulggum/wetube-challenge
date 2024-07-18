@@ -1,0 +1,9 @@
+extends ../base
+
+block content
+    form(method="POST")
+        input(name="author",placeholder="작성자",type="text",required)
+        input(name="title",placeholder="제목",type="text",required)
+        textarea(name="content",placeholder="내용",type="textarea",required,rows=10)
+        input(name="hashtags",placeholder="태그",type="text",value="memo.hashtags")
+        input(type="submit",value="등록")
