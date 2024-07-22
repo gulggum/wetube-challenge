@@ -9,13 +9,24 @@ html(lang="ko")
             nav 
                 ul 
                     li
+                      a(href="/") 🏠Home
+                    if loggedIn
+                        li
+                          a(href="users/logout") 로그아웃
+                        li
+                          a(href="/my-profile") #{loggedInUser.name}의 Profile
+                    else
+                        li
+                          a(href="/join") 회원가입
+                        li
+                          a(href="/login") 로그인
+                    li
+                      a(href="videos/search") 🪄검색
+                    li
                       a(href="videos/upload") Upload video
                     li
-                      a(href="/") Home
-                    li
-                      a(href="videos/search") 🪄Search
-                    li
-                      a(href="/memo") 📒MemoPage
+                      a(href="/memo") 📒게시판
+
 
         main
             block content
