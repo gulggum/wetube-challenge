@@ -1,3 +1,5 @@
 # 깃허브에 올라가지 않게 해준다
 
 /node_modules
+
+.env

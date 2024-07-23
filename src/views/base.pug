@@ -12,18 +12,18 @@ html(lang="ko")
                       a(href="/") 🏠Home
                     if loggedIn
                         li
-                          a(href="users/logout") 로그아웃
+                          a(href="/users/logout") 로그아웃
                         li
-                          a(href="/my-profile") #{loggedInUser.name}의 Profile
+                          a(href="/users/profile") #{loggedInUser.name}의 Profile
                     else
                         li
                           a(href="/join") 회원가입
                         li
                           a(href="/login") 로그인
                     li
-                      a(href="videos/search") 🪄검색
+                      a(href="/videos/search") 🪄검색
                     li
-                      a(href="videos/upload") Upload video
+                      a(href="/videos/upload") Upload video
                     li
                       a(href="/memo") 📒게시판
 

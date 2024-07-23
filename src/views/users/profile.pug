@@ -1,0 +1,13 @@
+extends ../base
+
+block content
+    ul 
+        li 이름 : #{loggedInUser.name}
+        li E-mail : #{loggedInUser.email}
+        li 주소 : #{loggedInUser.address}
+    
+    span ✔️
+    a(href="/users/profile-edit") 프로필 수정
+    br
+    span ✔️
+    a(href="/users/change-password") 비밀번호 변경

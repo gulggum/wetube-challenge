@@ -1,11 +1,12 @@
 import express from "express";
 import morgan from "morgan";
 import session from "express-session";
+import MongoStore from "connect-mongo";
 import globalRouter from "./routers/globalRouter";
 import userRouter from "./routers/userRouter";
 import videoRouter from "./routers/videoRouter";
 import memoRouter from "./routers/memoRouter";
-import { localsMiddleware } from "./localsMiddleware";
+import { localsMiddleware } from "./middlewares";
 
 const app = express();
 const logger = morgan("dev");
@@ -16,9 +17,12 @@ app.use(express.urlencoded({ extend: true }));
 
 app.use(
   session({
-    secret: "hello",
+    secret: process.env.COOKIE_SCRET,
     resave: true,
     saveUninitialized: true,
+    store: MongoStore.create({
+      mongoUrl: process.env.DB_URL,
+    }),
   })
 );
 //ㄴ>session이라는 미들웨어가 쿠키 전송

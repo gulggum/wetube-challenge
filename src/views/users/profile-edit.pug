@@ -1,0 +1,9 @@
+extends ../base
+
+block content 
+    form(method="POST")
+        input(name="file",typt="file")
+        input(name="name",type="text",placeholder="이름",required,value=loggedInUser.name)
+        input(name="email",type="email",placeholder="E-mail",required,value=loggedInUser.email)
+        input(name="address",type="text",placeholder="주소",required,value=loggedInUser.address)
+        input(type="submit",value="수정")
