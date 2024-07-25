@@ -37,6 +37,8 @@ app.use((req, res, next) => {
 
 app.use(localsMiddleware);
 app.use("/", globalRouter);
+app.use("/uploads", express.static("uploads"));
+app.use("/static", express.static("assets"));
 app.use("/users", userRouter);
 app.use("/videos", videoRouter);
 app.use("/memo", memoRouter);
