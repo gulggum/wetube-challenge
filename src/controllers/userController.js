@@ -62,6 +62,7 @@ export const logout = (req, res) => {
   return res.redirect("/");
 };
 
+// 프로필 & 프로필 수정
 export const profile = async (req, res) => {
   const { id } = req.params;
   const user = await User.findById(id);
@@ -83,9 +84,19 @@ export const postProfileEdit = async (req, res) => {
     body: { name, email, address },
     file,
   } = req;
+
+  const changeEmail = await User.exists({ email });
+  if (changeEmail && req.session.user.email !== email) {
+    return res.status(400).render("users/profile-edit", {
+      pageTitle: `${user.name}의 프로필`,
+      errorMessage: "이미 사용중인 E-mail 입니다.",
+    });
+  }
+
   const updateUser = await User.findByIdAndUpdate(
     _id,
     {
+      avatarUrl: file ? file.path : avatarUrl,
       name,
       email,
       address,
@@ -95,6 +106,8 @@ export const postProfileEdit = async (req, res) => {
   req.session.user = updateUser;
   return res.render("users/profile");
 };
+
+// 비밀번호 수정
 
 export const getChangePassword = (req, res) => {
   return res.render("users/change-password", { pageTitle: "비밀번호 변경" });
@@ -107,6 +120,7 @@ export const postChangePassword = async (req, res) => {
     },
     body: { oldPassword, newPassword, newPasswordConfirmation },
   } = req;
+
   const user = await User.findById(_id);
   const ok = await bcrypt.compare(oldPassword, user.password);
   if (!ok) {
