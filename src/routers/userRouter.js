@@ -1,6 +1,7 @@
 import express from "express";
 import {
-  profile,
+  publicProfile,
+  myPage,
   getProfileEdit,
   postProfileEdit,
   logout,
@@ -12,15 +13,16 @@ import { protectorMiddleware, avatarUpload } from "../middlewares";
 const userRouter = express.Router();
 
 userRouter.get("/logout", protectorMiddleware, logout);
-userRouter.get("/:id", protectorMiddleware, profile);
+userRouter.get("/myPage", protectorMiddleware, myPage);
 userRouter
-  .route("/:id([0-9a-f]{24})/profile-edit")
+  .route("/profile-edit")
   .all(protectorMiddleware)
   .get(getProfileEdit)
   .post(avatarUpload.single("avatarUrl"), postProfileEdit);
 userRouter
-  .route("/:id([0-9a-f]{24})/change-password")
+  .route("/change-password")
   .all(protectorMiddleware)
   .get(getChangePassword)
   .post(postChangePassword);
+userRouter.get("/:id", protectorMiddleware, publicProfile);
 export default userRouter;

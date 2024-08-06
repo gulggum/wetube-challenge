@@ -63,13 +63,22 @@ export const logout = (req, res) => {
 };
 
 // 프로필 & 프로필 수정
-export const profile = async (req, res) => {
+export const publicProfile = async (req, res) => {
   const { id } = req.params;
   const user = await User.findById(id);
   return res.render("users/profile", {
     pageTitle: `${user.name}의 프로필`,
   });
 };
+
+export const myPage = async (req, res) => {
+  const { id } = req.params;
+  const user = await User.findById(id);
+  return res.render("users/myPage", {
+    pageTitle: `My Page`,
+  });
+};
+
 export const getProfileEdit = (req, res) => {
   const user = req.session.user.name;
   return res.render("users/profile-edit", {
@@ -104,7 +113,7 @@ export const postProfileEdit = async (req, res) => {
     { new: true }
   );
   req.session.user = updateUser;
-  return res.render("users/profile");
+  return res.redirect("/users/myPage");
 };
 
 // 비밀번호 수정

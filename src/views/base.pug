@@ -15,12 +15,15 @@ html(lang="ko")
                         li
                           a(href="/users/logout") 로그아웃
                         li
-                          a(href=`/users/${loggedInUser._id}`) #{loggedInUser.name}의 Profile
+                          a(href="/users/myPage") Mypage
+                        li
+                          a(href=`/users/${loggedInUser._id}`) #{loggedInUser.name}의 profile
                     else
                         li
                           a(href="/join") 회원가입
                         li
                           a(href="/login") 로그인
+        
                     li
                       a(href="/videos/search") 🪄검색
                     li
