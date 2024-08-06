@@ -63,9 +63,10 @@ export const logout = (req, res) => {
 };
 
 export const profile = async (req, res) => {
-  const user = req.session.user.name;
+  const { id } = req.params;
+  const user = await User.findById(id);
   return res.render("users/profile", {
-    pageTitle: `${user}의 프로필`,
+    pageTitle: `${user.name}의 프로필`,
   });
 };
 export const getProfileEdit = (req, res) => {
@@ -75,18 +76,16 @@ export const getProfileEdit = (req, res) => {
   });
 };
 export const postProfileEdit = async (req, res) => {
-  const user = req.session.user._id;
   const {
     session: {
-      user: { _id },
+      user: { _id, avatarUrl },
     },
-    body: { file, username, name, email, address },
+    body: { name, email, address },
+    file,
   } = req;
   const updateUser = await User.findByIdAndUpdate(
     _id,
     {
-      file,
-      username,
       name,
       email,
       address,
@@ -94,8 +93,7 @@ export const postProfileEdit = async (req, res) => {
     { new: true }
   );
   req.session.user = updateUser;
-  console.log(`🩵${updateUser}`);
-  return res.redirect("/users/profile");
+  return res.render("users/profile");
 };
 
 export const getChangePassword = (req, res) => {
@@ -125,8 +123,6 @@ export const postChangePassword = async (req, res) => {
     });
   }
   user.password = newPassword;
-  console.log(user.password);
   await user.save(); // save()해주면 pre save middleware작동 (새로운 비밀번호를 해시화해줌)
-  console.log(user.password);
   return res.redirect("/users/logout");
 };

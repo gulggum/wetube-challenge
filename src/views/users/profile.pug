@@ -1,13 +1,14 @@
 extends ../base
 
 block content
-    ul 
+    ul  
+        img(src="\\"+loggedInUser.avatarUrl, width="100",height="100")
         li 이름 : #{loggedInUser.name}
         li E-mail : #{loggedInUser.email}
         li 주소 : #{loggedInUser.address}
     
     span ✔️
-    a(href="/users/profile-edit") 프로필 수정
+    a(href=`${loggedInUser._id}/profile-edit`) 프로필 수정
     br
     span ✔️
-    a(href="/users/change-password") 비밀번호 변경
+    a(href=`${loggedInUser._id}/change-password`) 비밀번호 변경

@@ -30,14 +30,14 @@ app.use(
 app.use((req, res, next) => {
   res.locals.sexy = "YOU";
   req.sessionStore.all((error, sessions) => {
-    console.log(sessions);
+    // console.log(sessions);
     next();
   });
 });
 
 app.use(localsMiddleware);
-app.use("/", globalRouter);
 app.use("/uploads", express.static("uploads"));
+app.use("/", globalRouter);
 app.use("/static", express.static("assets"));
 app.use("/users", userRouter);
 app.use("/videos", videoRouter);
