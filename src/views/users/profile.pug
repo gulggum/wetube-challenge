@@ -1,8 +1,15 @@
 extends ../base
+include ../mixins/video
 
 block content
-    ul  
-        img(src="\\"+loggedInUser.avatarUrl, width="100",height="100")
-        li 이름 : #{loggedInUser.name}
-        li E-mail : #{loggedInUser.email}
-        li 주소 : #{loggedInUser.address}
+    div  
+        img(src="\\"+user.avatarUrl, width="100",height="100")
+        br
+        span  #{user.username}
+    
+    hr
+    h3 Video list
+    each video in user.videos
+        +video(video)
+    else
+        li Sorry nothing found.

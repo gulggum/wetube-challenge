@@ -1,4 +1,5 @@
 import User from "../models/User";
+import Video from "../models/Video";
 import bcrypt from "bcrypt";
 
 export const getJoin = async (req, res) => {
@@ -65,9 +66,17 @@ export const logout = (req, res) => {
 // 프로필 & 프로필 수정
 export const publicProfile = async (req, res) => {
   const { id } = req.params;
-  const user = await User.findById(id);
+  const user = await User.findById(id).populate("videos");
+  if (!user) {
+    return res
+      .status(404)
+      .render("404", { pageTitle: "유저를 찾을수 없습니다." });
+  }
+  const videos = await Video.find({ owner: user._id });
   return res.render("users/profile", {
     pageTitle: `${user.name}의 프로필`,
+    user,
+    videos,
   });
 };
 
