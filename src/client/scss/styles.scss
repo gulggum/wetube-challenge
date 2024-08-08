@@ -1,4 +1,10 @@
-@import "./_variables";
+// Client
+@import "./variables";
+
+// Components
+
+// Screens
+@import "./screens/watch.scss";
 
 body {
   background-color: $red;

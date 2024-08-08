@@ -55,11 +55,14 @@ export const postLogin = async (req, res) => {
   req.session.loggedIn = true;
   req.session.user = user;
   //위 user는 const user = await User.findOne({ username });
+  req.flash("info", `반갑습니다 ${user.name}님 `);
   return res.redirect("/");
 };
 
 export const logout = (req, res) => {
-  req.session.destroy();
+  req.session.user = null;
+  req.session.loggedIn = false;
+  req.flash("info", "다음에 또 봐요~");
   return res.redirect("/");
 };
 
@@ -156,5 +159,6 @@ export const postChangePassword = async (req, res) => {
   }
   user.password = newPassword;
   await user.save(); // save()해주면 pre save middleware작동 (새로운 비밀번호를 해시화해줌)
+  req.flash("info", "비밀번호가 변경되었습니다.");
   return res.redirect("/users/logout");
 };

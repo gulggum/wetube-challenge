@@ -4,4 +4,6 @@ mixin video(videoData)
         a(href=`/videos/${videoData.id}`) #{videoData.title}
         p=videoData.description
         small=videoData.createdAt
+        br
+        small 조회수 : #{videoData.meta.views}회
         hr
